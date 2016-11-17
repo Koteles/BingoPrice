@@ -37,17 +37,43 @@
         android:background="@android:drawable/btn_dropdown"
         android:spinnerMode="dropdown" />
 
-    <Button
-        android:id="@+id/myButton"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="GET PRICE" />
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/myButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="GET PRICE" />
+
+        <CheckBox android:id="@+id/checkboxAlert"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-medium"
+            android:layout_marginTop="16dp"
+            android:layout_marginLeft="20dp"
+            android:textSize="20sp"
+            android:text="Alert me"
+            android:onClick="onCheckboxClicked"/>
+        <Spinner
+            android:id="@+id/spinner2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@android:drawable/btn_dropdown"
+            android:layout_marginTop="16dp"
+            android:layout_marginLeft="10dp"
+            android:spinnerMode="dropdown" />
+
+    </LinearLayout>
 
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
         android:fontFamily="sans-serif-medium"
         android:gravity="center_horizontal"
         android:padding="8dp"
