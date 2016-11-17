@@ -25,23 +25,76 @@ public class MainActivity extends AppCompatActivity {
 
     Button myButton;
     TextView txtResult;
+    float price;        //in price I have the price of the item I select
+    float desiredPrice;     //is the desired price and if price goes under this price I should get a notification
     private String[] items = new String[]{"Select", "Man Utd Adidas Home Shirt", "Man Utd Adidas Beanie", "Man Utd Adidas Anthem Jacket", "Man Utd Adidas Hooded Zip",
                                             "Man Utd Nike Basic Core T-Shirt"};
+
+    private String[] prices = new String[]{"10","20","30","40","50","60","70"};
     private String url = "http://www.uksoccershop.com//p-79012//2016-2017-Man-Utd-Adidas-Home-Football-Shirt.html";
     private String imageUrl = "http://cdn2.uksoccershop.com//images//MANCHESTER-UNITED-NIKE-2016-17-HOME-FOOTBALL-SHIRT-FRONT.jpg";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         myButton=(Button) findViewById(R.id.myButton);
         txtResult=(TextView)findViewById(R.id.txtResult);
 
         Spinner dropdown = (Spinner)findViewById(R.id.spinner1);
+        Spinner dropdown2 = (Spinner)findViewById(R.id.spinner2);
+
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, items);
         dropdown.setAdapter(adapter);
+
+        ArrayAdapter<String> adapter2 = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, prices);
+        dropdown2.setAdapter(adapter2);
+
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         dropdown.setAdapter(adapter);
+
+        adapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        dropdown2.setAdapter(adapter2);
+
+
+
+        dropdown2.setOnItemSelectedListener(new OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> arg0, View arg1,
+                                       int arg2, long arg3) {
+                switch (arg2) {
+
+                    case 1:
+                        desiredPrice = 10;
+                        break;
+                    case 2:
+                        desiredPrice = 20;
+                        break;
+                    case 3:
+                        desiredPrice = 30;
+                        break;
+                    case 4:
+                        desiredPrice = 40;
+                        break;
+                    case 5:
+                        desiredPrice = 50;
+                        break;
+                    case 6:
+                        desiredPrice = 60;
+                        break;
+                    case 7:
+                        desiredPrice = 70;
+                        break;
+                }
+            }
+            public void onNothingSelected(AdapterView<?> arg0) {
+                // TODO Auto-generated method stub
+
+            }
+        });
+
+
         dropdown.setOnItemSelectedListener(new OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> arg0, View arg1,
@@ -78,6 +131,7 @@ public class MainActivity extends AppCompatActivity {
                 // TODO Auto-generated method stub
 
             }
+
         });
 
 
@@ -95,7 +149,10 @@ public class MainActivity extends AppCompatActivity {
                                 int beginIndex = result.lastIndexOf(key) + key.length();
                                 int endIndex = beginIndex + 5;
                                 String content = result.substring(beginIndex, endIndex);
+                                price = Float.parseFloat(content);
                                 txtResult.setText(content + "€");
+
+
                             }
                         });
 
