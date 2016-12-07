@@ -23,10 +23,13 @@ import com.koushikdutta.ion.Ion;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.Toast;
 
+import static android.icu.lang.UCharacter.GraphemeClusterBreak.L;
+
 
 public class MainActivity extends AppCompatActivity {
 
-    Button myButton;
+    Button myButton, alertButton;
+    CheckBox alertCheckBox;
     TextView txtResult, text;
     EditText text_price;       //the price I introduce in the editText
     float price;             //in price I have the price of the item I select
@@ -42,6 +45,7 @@ public class MainActivity extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        alertButton = (Button) findViewById(R.id.alert_button);
         myButton=(Button) findViewById(R.id.myButton);
         txtResult=(TextView)findViewById(R.id.txtResult);
         text = (TextView) findViewById(R.id.text);
@@ -110,13 +114,8 @@ public class MainActivity extends AppCompatActivity {
                                 int endIndex = beginIndex + 5;
                                 String content = result.substring(beginIndex, endIndex);
                                 price = Float.parseFloat(content);
-                                desiredPrice = Float.parseFloat(text_price.getText().toString());
                                 txtResult.setText(content + "€");
                                 text.setText("The current price of the item is:");
-                                CheckBox alertCheckBox = (CheckBox) findViewById(R.id.checkboxAlert);
-                                boolean isAlert = alertCheckBox.isChecked();
-                                Log.v("MainActivity", "Is alerting is "+ isAlert + " " +desiredPrice);
-
 
                             }
                         });
@@ -133,6 +132,17 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    public void alert(View view){
+        text_price = (EditText) findViewById(R.id.price_field);
+        String s = text_price.getText().toString();
+        alertCheckBox = (CheckBox) findViewById(R.id.checkboxAlert);
+        boolean isAlert = alertCheckBox.isChecked();
+        if(isAlert && s.matches("")){
+            Toast.makeText(this, "You did not enter a price", Toast.LENGTH_SHORT).show();
+            return;
+        }
     }
 
 
