@@ -1,7 +1,9 @@
 package com.example.android.bingoprice;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 
+import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -139,10 +141,27 @@ public class MainActivity extends AppCompatActivity {
         String s = text_price.getText().toString();
         alertCheckBox = (CheckBox) findViewById(R.id.checkboxAlert);
         boolean isAlert = alertCheckBox.isChecked();
+        if(!s.matches("")){
+            desiredPrice = Float.parseFloat(s);
+        }
         if(isAlert && s.matches("")){
             Toast.makeText(this, "You did not enter a price", Toast.LENGTH_SHORT).show();
             return;
         }
+
+        else if(isAlert && !s.matches("") && (desiredPrice >=  price)){
+
+            Intent intent = new Intent(Intent.ACTION_SENDTO);
+            intent.setData(Uri.parse("mailto:")); // only email apps should handle this
+            intent.putExtra(Intent.EXTRA_EMAIL, "koteles.krisztian@yahoo.ro");
+            intent.putExtra(Intent.EXTRA_SUBJECT, "BingoPrice");
+            if (intent.resolveActivity(getPackageManager()) != null) {
+                startActivity(intent);
+            }
+        }
+
+
+
     }
 
 
