@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Bingo Price</string>
+    <string name="price_error">Nu ați introdus prețul</string>
+    <string name="select_item">Selectați produsul:</string>
+    <string name="manchester_fan">Salut, fan Manchester United!</string>
+    <string name="current_price">Prețul curent al produsului este:</string>
+    <string name="price">Preț</string>
+    <string name="alert">Anunță-mă</string>
+    <string name="select">Selectează</string>
+    <string name="alert_me_if_drops">Anunță-mă dacă prețul scade sub:</string>
+    <string name="get_price">Află prețul</string>
+</resources>

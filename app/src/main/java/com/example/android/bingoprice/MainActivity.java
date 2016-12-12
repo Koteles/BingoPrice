@@ -117,7 +117,7 @@ public class MainActivity extends AppCompatActivity {
                                 String content = result.substring(beginIndex, endIndex);
                                 price = Float.parseFloat(content);
                                 txtResult.setText(content + "€");
-                                text.setText("The current price of the item is:");
+                                text.setText(getString(R.string.current_price));
 
                             }
                         });
@@ -145,7 +145,7 @@ public class MainActivity extends AppCompatActivity {
             desiredPrice = Float.parseFloat(s);
         }
         if(isAlert && s.matches("")){
-            Toast.makeText(this, "You did not enter a price", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, getString(R.string.price_error), Toast.LENGTH_SHORT).show();
             return;
         }
 
