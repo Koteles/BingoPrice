@@ -1,4 +1,5 @@
 <resources>
+
     <string name="app_name">Bingo Price</string>
     <string name="manchester_fan">Hello Manchester United fan!</string>
     <string name="current_price">The current price of the item is:</string>

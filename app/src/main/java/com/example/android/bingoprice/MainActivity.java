@@ -1,11 +1,16 @@
 package com.example.android.bingoprice;
 
+import android.app.NotificationManager;
+import android.app.PendingIntent;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 
 import android.net.Uri;
+import android.support.v4.app.TaskStackBuilder;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v4.app.NotificationCompat;
 import android.util.Log;
 import android.view.View;
 
@@ -151,14 +156,21 @@ public class MainActivity extends AppCompatActivity {
 
         else if(isAlert && !s.matches("") && (desiredPrice >=  price)){
 
-            Intent intent = new Intent(Intent.ACTION_SENDTO);
-            intent.setData(Uri.parse("mailto:")); // only email apps should handle this
-            intent.putExtra(Intent.EXTRA_EMAIL, new String[] {"koteles.krisztian@yahoo.ro"});
-            intent.putExtra(Intent.EXTRA_SUBJECT, "BingoPrice");
-            intent.putExtra(Intent.EXTRA_SUBJECT, "Pretul nou este: " + price);
-            if (intent.resolveActivity(getPackageManager()) != null) {
-                startActivity(intent);
-            }
+
+            NotificationCompat.Builder mBuilder =
+                    new NotificationCompat.Builder(this)
+                            .setSmallIcon(R.drawable.ic_stat_bestprice)
+                            .setContentTitle("My notification")
+                            .setContentText("Hello World!");
+            Intent intent = new Intent(this, MainActivity.class);
+            TaskStackBuilder stackBuilder = TaskStackBuilder.create(this);
+            stackBuilder.addParentStack(MainActivity.class);
+            stackBuilder.addNextIntent(intent);
+            PendingIntent pendingIntent = stackBuilder.getPendingIntent(0,PendingIntent.FLAG_UPDATE_CURRENT);
+            mBuilder.setContentIntent(pendingIntent);
+            NotificationManager NM = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+            NM.notify(0,mBuilder.build());
+
         }
 
 
