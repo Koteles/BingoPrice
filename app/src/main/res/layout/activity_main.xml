@@ -45,14 +45,13 @@
             android:layout_marginLeft="10dp"
             android:text="@string/get_price" />
 
-        <TextView
-            android:id="@+id/text"
-            style="@style/HeaderTextStyle"
-            android:layout_marginTop="30dp"
-            android:fontFamily="sans-serif-medium"
-            android:gravity="center_horizontal"
-            android:padding="8dp"
-            android:text="" />
+
+
+        <ImageView
+            android:id="@+id/myImage"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:scaleType="centerInside" />
 
         <TextView
             android:id="@+id/txtResult"
@@ -62,12 +61,6 @@
             android:padding="8dp"
             android:text=""
             style="@style/HeaderTextStyle"/>
-
-        <ImageView
-            android:id="@+id/myImage"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:scaleType="centerInside" />
 
         <CheckBox android:id="@+id/checkboxAlert"
             android:layout_width="wrap_content"
